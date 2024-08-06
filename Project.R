@@ -3,7 +3,6 @@ library(dplyr)
 spotifydata = read.csv("spotify_data.csv")
 head(spotifydata)
 
-View(spotifydata)
 
 spotifydata = subset(spotifydata,released_year %in% c(2022, 2023), select = c(artist_count,artist_name,track_name, released_year,released_day,in_spotify_charts,
                                               in_apple_charts,in_deezer_charts,streams,
@@ -12,7 +11,7 @@ spotifydata = subset(spotifydata,released_year %in% c(2022, 2023), select = c(ar
                                               liveness_.,speechiness_.) )
 
 spotifydata <- spotifydata %>%
-  mutate(streams = as.numeric(streams))
+mutate(streams = as.numeric(streams))
 
 summary(spotifydata)
 
@@ -23,6 +22,7 @@ ggplot(spotifydata, aes(x=released_year)) +
   theme_minimal() + 
   labs(title="Number of Tracks Released per Year", x="Released Year", y="Count of Tracks") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))  
+
 # Plot 2: Distribution of Musical Modes in Playlist
  ggplot(spotifydata, aes(x=mode)) + 
   geom_bar(fill="cornflowerblue") + 
